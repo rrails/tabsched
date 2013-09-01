@@ -1,0 +1,26 @@
+<nav class="top-bar">
+  <div class="title-area">
+    <div class="container">
+      <%= link_to "TabSchedule App", '#', id:"logo" %>
+        <section class="top-bar-section">
+          <!-- Left Nav Section -->
+            <ul class="left">
+              <% if @current_user.present? %>
+                <li class="divider"></li>
+                <li class="active"><%= link_to('Home', @current_user) %></li>
+                <li class="divider"></li>
+                <li><%= link_to('Setting', edit_user_registration_path, :class => 'button') %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Schedule", schedules_path %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Medication", medications_path %></li>
+                <li class="divider"></li>
+                <li><%= link_to('Log Out', destroy_user_session_path, :class => 'button', :method => :delete ) %></li>
+              <% else %>
+                <li>Login</li>
+              <% end %>
+            </ul>
+        </section>
+    </div>
+  </div>
+</nav>
