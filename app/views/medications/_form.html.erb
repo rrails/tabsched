@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="large-6 columns">
+    <%= form_for @medication do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <p class='profile-text'>
+        <%= f.label :medication_name %>
+        <%= f.text_field :medication_name %>
+        <%= f.label :stock_quantity %>
+        <%= f.text_field :stock_quantity%>
+        <%= f.label 'Medication Type' %>
+        <%= f.select :medication_type_id, Medicationtype.all.collect{|e| [e.medication_type,e.id]}%>
+
+      <%= f.fields_for :rosters do |builder| %>
+        <%= render 'rosters', :f => builder %>
+      <% end %>
+      <div id="addrosterlink">
+        <%=  link_to_add_fields "+",f, :rosters %>
+      </div>
+      <p><%= f.submit %></p>
+    <% end %>
+  </div >
+</div>

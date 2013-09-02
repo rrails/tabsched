@@ -6,8 +6,8 @@ describe HomeController do
   end
 
   describe "GET #index" do
-   it 'should respond with a status 200' do
-      expect(response.status).to eq(200)
+   it 'should respond with a status 401' do
+      expect(response.status).to eq(401)
     end
   end
 

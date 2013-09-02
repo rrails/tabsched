@@ -1,0 +1,20 @@
+<div class='roster row'>
+  <div class='rosterperiod'>
+    <div class="large-6 columns">
+      <!-- <%#= f.label :current_existing_rule, "Frequency" %><br/> -->
+      <p><%= f.label :recurring_rules, "Frequency" %><br/>
+        <%= f.select_recurring :frequency %>
+      </p>
+      <%= f.label :starting_date %>
+      <%= f.datepicker :starting_date, :class => "datepicker" %>
+      <%= f.label :ending_date %>
+      <%= f.datepicker :ending_date, :class => "datepicker"  %>
+      <%= f.label :group_id %>
+      <%= f.select :group_id, current_user.timeperiods.collect{|e| [e.timeperiodname.time_period_name + e.time_of_day.to_s,e.id]}%>
+      <!-- <%#= f.select :group_id, Timeperiod.all.collect{|e| [e.timeperiodname.time_period_name,e.id]}%> -->
+      <!-- Need to do an ajax request to show the time. -->
+      <%= f.hidden_field :_destroy %>
+      <%= f.button 'Delete roster', :id => 'del_roster', :class => 'btn radius  tiny alert' %>
+    </div>
+  </div>
+</div>

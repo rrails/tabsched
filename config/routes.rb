@@ -5,6 +5,7 @@ Tabsched::Application.routes.draw do
 
   post '/users/sign_in' => "home#index"
 
+  resources :users
   resources :medications
   resources :schedules
 

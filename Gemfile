@@ -15,6 +15,11 @@ gem 'ice_cube'
 gem 'delayed_job_active_record'
 gem 'clockwork'
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'recurring_select'
+gem 'jquery-ui-rails'
+gem 'jquery_datepicker'
+gem 'jquery-timepicker-rails'
+gem 'twilio-ruby'
 
 
 group :development, :test do
@@ -34,6 +39,8 @@ group :development, :test do
 
   gem 'better_errors'
   gem 'debugger'
+  gem 'dotenv-rails'
+
 end
 
 # Gems used only for assets and not required

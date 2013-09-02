@@ -5,17 +5,17 @@
         <section class="top-bar-section">
           <!-- Left Nav Section -->
             <ul class="left">
-              <% if @current_user.present? %>
+              <% if current_user.present? %>
                 <li class="divider"></li>
-                <li class="active"><%= link_to('Home', @current_user) %></li>
+                <!-- <li class="active"><%#= link_to('Home', current_user) %></li> -->
                 <li class="divider"></li>
-                <li><%= link_to('Setting', edit_user_registration_path, :class => 'button') %></li>
+                <li><%= link_to('Profile', edit_user_path(current_user), :class => 'button') %></li>
                 <li class="divider"></li>
-                <li><%= link_to "Schedule", schedules_path %></li>
+                <!-- <li><%#= link_to "Schedule", schedules_path %></li> -->
                 <li class="divider"></li>
                 <li><%= link_to "Medication", medications_path %></li>
                 <li class="divider"></li>
-                <li><%= link_to('Log Out', destroy_user_session_path, :class => 'button', :method => :delete ) %></li>
+                <!-- <li><%#= link_to('Log Out', destroy_user_session_path, :class => 'button', :method => :delete ) %></li> -->
               <% else %>
                 <li>Login</li>
               <% end %>

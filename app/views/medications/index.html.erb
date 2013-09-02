@@ -1,0 +1,14 @@
+<h1>hi</h1>
+<div class='row'>
+  <div class="large-6 columns">
+    <% @medications.each do |med|%>
+      <p><%= med.medication_name %><br/>
+      <p><%= med.directions %><br/>
+      <li><%= link_to('Edit Medication', edit_medication_path(med), :id => 'update_medication', :class => 'button radius tiny ')%></li>
+    <% end %>
+  </div>
+</div>
+
+
+<li><%= link_to('New Medication', new_medication_path, :id => 'create_medication', :class => 'button radius tiny ')%></li>
+

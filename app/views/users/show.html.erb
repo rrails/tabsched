@@ -1,0 +1,15 @@
+<div class='row'>
+  <div class="large-6 columns">
+    <% @user %>
+      <p>Name: <%= @user.first_name %><br/></p>
+      <p>Mobile Number: <%= @user.mobile_phone %><br/>
+      <p>Email Number: <%= @user.email %><br/>
+      </p>
+    <% @user.timeperiods.each do |q| %>
+        <p><%= q.timeperiodname_id %></p>
+        <p><%= q.time_of_day %></p>
+        <br><br>
+    <% end %>
+  </div>
+</div>
+

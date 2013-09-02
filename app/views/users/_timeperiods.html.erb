@@ -1,0 +1,12 @@
+<div class='time row'>
+  <div class='timeperiod'>
+    <div class="large-6 columns">
+      <%= f.label 'Time Period Name' %>
+      <%= f.select :timeperiodname_id, Timeperiodname.all.collect{|e| [e.time_period_name,e.id]}%>
+      <%= f.label :time_of_day %>
+      <%= f.text_field :time_of_day, :class => 'timepicker' %>
+      <%= f.hidden_field :_destroy %>
+      <%= f.button 'Delete timeperiod', :id => 'del_timeperiod', :class => 'btn radius  tiny alert' %>
+    </div>
+  </div>
+</div>

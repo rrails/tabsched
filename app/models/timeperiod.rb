@@ -11,5 +11,7 @@
 #
 
 class Timeperiod < ActiveRecord::Base
-
+  attr_accessible :time_of_day,:timeperiodname_id, :user_id
+  belongs_to :users
+  belongs_to :timeperiodname
 end

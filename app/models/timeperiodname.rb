@@ -10,4 +10,5 @@
 
 class Timeperiodname < ActiveRecord::Base
   attr_accessible :time_period_name
+  has_many :timeperiods
 end

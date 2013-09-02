@@ -1,0 +1,10 @@
+/* TimeEntry styles */
+.timeEntry_control {
+	vertical-align: middle;
+	margin-left: 2px;
+   display: inline-block;
+  background: url('spinnerDefault.png') no-repeat scroll 0px 0px transparent;
+  width: 20px;
+  height: 20px;
+}
+

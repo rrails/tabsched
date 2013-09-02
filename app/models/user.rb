@@ -30,5 +30,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable
          # , :validatable
   # attr_accessible :title, :body
-  attr_accessible :first_name, :last_name,:email, :mobile_phone,:password,:password_confirmation
+  has_many :timeperiods, :dependent => :destroy
+  has_many :medications, :dependent => :destroy
+  attr_accessible :first_name, :last_name,:email, :mobile_phone,:password,:password_confirmation,:mobile_phone_notification,:email_notification,
+                  :timeperiods_attributes
+  accepts_nested_attributes_for :timeperiods, :reject_if => lambda { |a| a[:timeperiodname_id].blank? }, :allow_destroy => true
+
 end

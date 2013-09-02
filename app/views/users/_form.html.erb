@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="large-6 columns">
+    <%= form_for @user do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <p class='profile-text'>
+        <%= f.check_box :email_notification %>
+        <%= f.label :email_notification %>
+        <%= f.check_box :mobile_phone_notification %>
+        <%= f.label :mobile_phone_notification %>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %>
+        <%= f.label :mobile_phone %>
+        <%= f.text_field :mobile_phone %>
+      </p>
+      <%= f.fields_for :timeperiods do |builder| %>
+        <%= render 'timeperiods', :f => builder %>
+      <% end %>
+      <div id="addtimeperiodlink">
+        <%=  link_to_add_fields "+",f, :timeperiods %>
+      </div>
+      <p><%= f.submit %></p>
+    <% end %>
+  </div >
+</div>
