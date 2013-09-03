@@ -1,0 +1,11 @@
+    <%= f.label :current_existing_rule, "default and set" %><br/>
+    <%= f.select_recurring :current_existing_rule, [
+      IceCube::Rule.weekly.day(:monday, :wednesday, :friday),
+      IceCube::Rule.monthly.day_of_month(-1)
+    ], :allow_blank => true %>
+  </p>
+
+ *= require foundation_and_overrides
+//= require jquery-ui-timepicker-addon.js
+
+

@@ -9,20 +9,12 @@ every(2.minutes, 'reminder.deliver') {
   # what object is reminders
 reminders = Schedule.find(:all, :conditions => ["next_occurrence <= ?", Time.now])
 unless reminders.nil?
-  reminders.each do |i|
-    # l.log(i.user_id, i.medication_id, nil, i.next_occurrence, i.next_occurrence, Journal::STATUS_DUE)
-    @journal = Journal.new
+  reminders.each do |reminder|
+    next_schedule = reminder.set_nextoccurrence(reminder)
     binding.pry
-    @journal.user_id = i.user_id
-    @journal.medication_id = i.medication_id
-    @journal.timeperiod_id =  nil
-    @journal.time_due = i.next_occurrence
-    @journal.date_due = i.next_occurrence
-    @journal.status = Journal::STATUS_DUE
-    @journal.save
-    i.set_nextoccurrence(i)
-    i.delay.send_email_message
-    # i.delay.send_sms
+    Journal.journalise(next_schedule.user_id, next_schedule.medication_id, nil, next_schedule.previous_occurrence, next_schedule.next_occurrence,next_schedule.dosage, Journal::STATUS_DUE)
+    # next_schedule.delay.send_email_message
+    next_schedule.delay.send_sms
   end
 end
 }

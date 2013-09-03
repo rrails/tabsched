@@ -6,11 +6,22 @@ Tabsched::Application.routes.draw do
   post '/users/sign_in' => "home#index"
 
   resources :users
-  resources :medications
-  resources :schedules
+  resources :journals do
+    collection do
+      get :bulk_edit
+      post :bulk_edit
+    end
+    member do
+      get :taken
+      get :skip
+    end
+  end
 
+  resources :medications
+  # resources :schedules
   get "static_pages/contact"
   get "static_pages/about"
-  get '/ice' => 'icecube#iced'
+
+
 
 end

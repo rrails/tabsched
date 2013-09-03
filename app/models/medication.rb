@@ -21,9 +21,12 @@ class Medication < ActiveRecord::Base
                   :user_id,:recurring_rules,:rosters_attributes
   belongs_to :users
   has_many :rosters
+  has_many :journals
 
   accepts_nested_attributes_for :rosters, :reject_if => lambda { |a| a[:frequencytype_id].blank? }, :allow_destroy => true
 
-
+  def update_stock(dosage)
+    self.stock_quantity = self.stock_quantity - dosage
+  end
 
 end

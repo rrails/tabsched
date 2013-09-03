@@ -1,10 +1,7 @@
 class EnquiryMailer < ActionMailer::Base
     default from:'tabsched@gmail.com'
 
-
-  def enquiry_email(medication_id) #this is called from enquiries controller.
-
-
+  def enquiry_email(medication_id,next_occurrence) #this is called from schedule.rb
     @enquiry = Enquiry.new
     medication = Medication.find(medication_id)
     @enquiry.body = medication.medication_name
@@ -12,15 +9,7 @@ class EnquiryMailer < ActionMailer::Base
     @enquiry.subject = 'Reminder to take your tablets'
     mail_to = user.email
     # mail(to: mail_to,subject: @enquiry.subject)
-    binding.pry
-
-    @journal = Journal.new
-    @journal.user_id = user.user_id
-    @journal.medication_id = medication.medication_id
-    @journal.timeperiod_id =  nil
-    # @journal.time_due = i.next_occurrence
-    # @journal.date_due = i.next_occurrence
-    @journal.status = Journal::STATUS_NOTIFIED_MAIL
-    @journal.save
+    #need to get the due date
+    Journal.journalise(user.id, medication.id,nil,nil,next_occurrence,nil,nil, Journal::STATUS_NOTIFIED_MAIL)
   end
 end

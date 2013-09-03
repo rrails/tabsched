@@ -2,14 +2,14 @@
   <div class="large-6 columns">
     <% @user %>
       <p>Name: <%= @user.first_name %><br/></p>
-      <p>Mobile Number: <%= @user.mobile_phone %><br/>
-      <p>Email Number: <%= @user.email %><br/>
-      </p>
-    <% @user.timeperiods.each do |q| %>
-        <p><%= q.timeperiodname_id %></p>
-        <p><%= q.time_of_day %></p>
-        <br><br>
-    <% end %>
+      <p>Mobile Number: <%= @user.mobile_phone %>
+        Notification <%= @user.notification_label%></p>
+      <p>Email: <%= @user.email %>
+        Notification<%= @user.email_notification ? 'Yes' : 'No' %></p>
+
+      <% @user.timeperiods.each do |t| %>
+        <p><%= t.timeperiodname.time_period_name %>
+        <%= t.time_of_day.strftime('%H:%M') %></p>
+      <% end %>
   </div>
 </div>
-

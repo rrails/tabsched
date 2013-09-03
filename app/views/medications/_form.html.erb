@@ -5,6 +5,8 @@
       <p class='profile-text'>
         <%= f.label :medication_name %>
         <%= f.text_field :medication_name %>
+        <%= f.label :expiry_date %>
+        <%= f.text_field :expiry_date, :class => "datepicker" %>
         <%= f.label :stock_quantity %>
         <%= f.text_field :stock_quantity%>
         <%= f.label 'Medication Type' %>
@@ -14,9 +16,10 @@
         <%= render 'rosters', :f => builder %>
       <% end %>
       <div id="addrosterlink">
-        <%=  link_to_add_fields "+",f, :rosters %>
+        <%=  link_to_add_fields image_tag("plus.png"),f, :rosters, :class => 'button small round' %>
       </div>
-      <p><%= f.submit %></p>
+      <p><%= f.submit :id => 'medication_form' %></p>
     <% end %>
   </div >
 </div>
+

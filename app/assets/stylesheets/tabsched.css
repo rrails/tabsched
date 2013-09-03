@@ -16,3 +16,23 @@
 .rs_dialog_holder .rs_dialog .rs_dialog_content .freq_option_section .rs_calendar_day a, .rs_dialog_holder .rs_dialog .rs_dialog_content .freq_option_section .rs_calendar_week a {
     width: 21px;
 }
+
+table.width_hundred {
+  width: 100%;
+}
+
+.eachmed {
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px 3px;
+    line-height: 10px;
+    margin: 1px 1px 20px 1px;
+
+
+}
+.addicon{
+  background: url(/images/plus.eps);
+  width:25px;
+  height:20px;
+  display: block;
+}

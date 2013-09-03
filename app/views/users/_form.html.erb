@@ -3,22 +3,22 @@
     <%= form_for @user do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <p class='profile-text'>
-        <%= f.check_box :email_notification %>
-        <%= f.label :email_notification %>
-        <%= f.check_box :mobile_phone_notification %>
-        <%= f.label :mobile_phone_notification %>
-        <%= f.label :email %>
-        <%= f.text_field :email %>
         <%= f.label :first_name %>
         <%= f.text_field :first_name %>
+        <%= f.label :email %>
+        <%= f.text_field :email, :class => 'email' %>
+        <%= f.check_box :email_notification, :id => 'email_notify'%>
+        <%= f.label :email_notification %>
         <%= f.label :mobile_phone %>
-        <%= f.text_field :mobile_phone %>
+        <%= f.text_field :mobile_phone, :class => 'mobile_phone' %>
+        <%= f.check_box :mobile_phone_notification, :id => 'mobile_notify'%>
+        <%= f.label :mobile_phone_notification %>
       </p>
       <%= f.fields_for :timeperiods do |builder| %>
         <%= render 'timeperiods', :f => builder %>
       <% end %>
       <div id="addtimeperiodlink">
-        <%=  link_to_add_fields "+",f, :timeperiods %>
+        <%=  link_to_add_fields image_tag("plus.png"),f, :timeperiods,:class => 'button small round' %>
       </div>
       <p><%= f.submit %></p>
     <% end %>

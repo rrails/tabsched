@@ -19,24 +19,16 @@
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= javascript_include_tag "application" %>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
-
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-
-
+    <%= render 'layouts/header' %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= render 'layouts/header' %>
-
     <%= yield %>
-
     <%= render 'layouts/footer' %>
+
 
   </body>
 </html>
-
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>

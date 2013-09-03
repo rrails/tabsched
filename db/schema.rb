@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130902112111) do
+ActiveRecord::Schema.define(:version => 20130903022909) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0, :null => false
@@ -39,11 +39,14 @@ ActiveRecord::Schema.define(:version => 20130902112111) do
     t.integer  "user_id"
     t.integer  "medication_id"
     t.integer  "timeperiod_id"
-    t.datetime "time_due"
     t.datetime "date_due"
     t.string   "status"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "dosage"
+    t.integer  "parent_id"
+    t.datetime "date_taken"
+    t.datetime "next_due"
   end
 
   create_table "medications", :force => true do |t|
@@ -76,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20130902112111) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.string   "frequency"
+    t.integer  "dosage"
   end
 
   create_table "schedules", :force => true do |t|
@@ -83,8 +87,10 @@ ActiveRecord::Schema.define(:version => 20130902112111) do
     t.datetime "next_occurrence"
     t.integer  "user_id"
     t.integer  "medication_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.datetime "previous_occurrence"
+    t.integer  "dosage"
   end
 
   create_table "timeperiodnames", :force => true do |t|

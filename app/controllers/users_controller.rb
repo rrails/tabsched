@@ -8,11 +8,6 @@ class UsersController < ApplicationController
     @timeperiod = Timeperiod.new
   end
 
-  # def update
-    # @user = User.find(params[:id])
-    # @timeperiod = Timeperiod.new
-  # end
-
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
