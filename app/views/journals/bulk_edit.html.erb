@@ -1,13 +1,16 @@
-<div class="row">
-  <div class="large-7 columns">
+<div class="row top_row_padding">
+  <div class="large-12 small-12 columns">
     <% @journals.each do |journal| %>
       <div class="dose">
         <p class="medicine"> Medication: <%= journal.medication.medication_name %></p>
         <p class="status">Status: <%= journal.status %></p>
         <p class="dosage">Dosage: <%= journal.dosage %></p>
-        <p class="last">Last Taken: <%= journal.date_taken.strftime('%d-%m-%y %H:%M') if journal.date_taken %></p>
+        <p class="last">Last Taken: <%= journal.date_taken.strftime('%d-%m-%y %H:%M') if journal.date_taken %>
+          at <%= journal.date_taken.strftime('%H:%M') if journal.date_taken %></p>
+        </p>
           <!-- <%#= journal.date_due.strftime('%d-%m-%y %H:%M') if journal.date_due %> -->
-        <p class="next">Next Due: <%= journal.next_due.strftime('%d-%m-%y %H:%M') if journal.next_due %></p>
+        <p class="next">Next Due: <%= journal.next_due.strftime('%d-%m-%y') if journal.next_due %>
+         at <%= journal.next_due.strftime('%H:%M') if journal.next_due %></p>
       <div class="controls">
         <%= form_tag "/journals" do %>
           <input type="hidden" name="status" value="Taken">

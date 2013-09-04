@@ -1,12 +1,17 @@
-  <div class='row'>
-  <div class="large-6 columns">
-    <% @medications.each do |med|%>
-      <p><%= med.medication_name %><br/>
-      <p><%= med.stock_quantity %><br/>
-      <p><%= med.expiry_date.strftime('%d-%m-%y %H:%M') if med.expiry_date %><br/>
-      <p><%= med.directions %><br/>
-      <%= link_to('Edit Medication', edit_medication_path(med), :id => 'update_medication', :class => 'button radius tiny ')%>
+<div class='row top_row_padding'>
+  <div class="large-12 small-12 columns">
+    <fieldset>
+      <legend>Your Medications</legend>
+        <% @medications.each do |med|%>
+          <div class="large-12 small-12 columns medication">
+            <p>Medication: <%= med.medication_name %></p>
+            <p>Stock: <%= med.stock_quantity %></p>
+            <p>Expiry Date:<%= med.expiry_date.strftime('%d-%m-%y') if med.expiry_date %></p>
+            <p>Directions: <%= med.directions %></p>
+            <%= link_to('Edit Medication', edit_medication_path(med), :id => 'update_medication', :class => 'button radius tiny ')%>
+          </div>
     <% end %>
+  </fieldset>
   </div>
 </div>
 

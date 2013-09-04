@@ -1,17 +1,21 @@
-<div class="row">
-  <div class="large-6 columns">
+<div class="row top_row_padding">
+  <div class="large-12 small-12 columns">
     <%= form_for @medication do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <p class='profile-text'>
+      <fieldset>
+        <legend>Your Medications</legend>
+        <%= render 'shared/error_messages', object: f.object %>
         <%= f.label :medication_name %>
         <%= f.text_field :medication_name %>
         <%= f.label :expiry_date %>
-        <%= f.text_field :expiry_date, :class => "datepicker" %>
+        <% if f.object.expiry_date %>
+        <%= f.text_field :expiry_date, :class => "datepicker", :value => f.object.expiry_date.strftime('%d-%m-%y')%>
+        <% else %>
+          <%= f.text_field :expiry_date, :class => 'datepicker' %>
+        <% end %>
         <%= f.label :stock_quantity %>
         <%= f.text_field :stock_quantity%>
         <%= f.label 'Medication Type' %>
         <%= f.select :medication_type_id, Medicationtype.all.collect{|e| [e.medication_type,e.id]}%>
-
       <%= f.fields_for :rosters do |builder| %>
         <%= render 'rosters', :f => builder %>
       <% end %>
@@ -19,6 +23,7 @@
         <%=  link_to_add_fields image_tag("plus.png"),f, :rosters, :class => 'button small round' %>
       </div>
       <p><%= f.submit :id => 'medication_form' %></p>
+      </fieldset>
     <% end %>
   </div >
 </div>

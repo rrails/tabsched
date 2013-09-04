@@ -15,8 +15,6 @@ Tabsched::Application.routes.draw do
   get '/journals'  => "journals#bulk_edit"
   post '/journals' => "journals#bulk_edit"
   get '/journals/history' => "journals#history"
-  resources :home
-  resources :about
 
   resources :medications
   resources :users

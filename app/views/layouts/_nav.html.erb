@@ -1,38 +1,38 @@
-<nav class="top-bar">
-  <ul class="title-area">
-    <li class="name">
-      <h1><a href="#"> Tabs </a></h1>
-    </li>
-    <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
-  </ul>
-
-  <section class="top-bar-section">
-    <!-- Left Nav Section -->
-    <ul class="left">
-      <% if current_user.present? %>
-        <li class="divider"></li>
-        <li class="active"><%= link_to('Home', current_user) %></li>
-        <li class="divider"></li>
-        <li><%= link_to('Profile', edit_user_path(current_user), :class => 'button') %></li>
-        <li class="divider"></li>
-        <li><%= link_to "Medication", medications_path %></li>
-        <li class="divider"></li>
-        <li><%= link_to "Does due", journals_path %></li>
-        <li class="divider"></li>
-        <li><%= link_to "History", journals_history_path %></li>
-      <% else %>
-       <li><%= link_to "Register", register_path, :class => '' %></li>
-        <li><%= link_to "Sign In", login_path, :class => '' %></li>
-        <!-- <%#= link_to "About",about_path %> -->
-        <!-- <%#= link_to "Contact",contact_path %> -->
-      <% end %>
+<div class="fixed">
+  <nav class="top-bar">
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="/"> Tabs </a></h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
     </ul>
 
-    <ul class="right">
-      <% if current_user.present? %>
-        <li class="divider"></li>
-        <li><%= link_to(current_user.first_name, destroy_user_session_path, :method => :delete) %></li>
-      <% end %>
-    </ul>
-  </section>
-</nav>
+    <section class="top-bar-section">
+      <!-- Left Nav Section -->
+      <ul class="left">
+        <% if current_user.present? %>
+          <li class="divider"></li>
+          <li><%= link_to('Profile', edit_user_path(current_user)) %></li>
+          <li class="divider"></li>
+          <li><%= link_to "Medication", medications_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to "Dose Due", journals_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to "History", journals_history_path %></li>
+        <% else %>
+         <li><%= link_to "Register", register_path, :class => '' %></li>
+          <li><%= link_to "Sign In", login_path, :class => '' %></li>
+          <!-- <%#= link_to "About",about_path %> -->
+          <!-- <%#= link_to "Contact",contact_path %> -->
+        <% end %>
+      </ul>
+
+      <ul class="right">
+        <% if current_user.present? %>
+          <li class="divider"></li>
+          <li><%= link_to(current_user.first_name, destroy_user_session_path, :method => :delete) %></li>
+        <% end %>
+      </ul>
+    </section>
+  </nav>
+</div>
