@@ -30,7 +30,6 @@ class Journal < ActiveRecord::Base
   STATUS_SKIPPED = 'Skipped'
 
   def self.journalise(user_id, medication_id, timeperiod_id = nil, date_taken, date_due, next_due, dosage,status)
-binding.pry
 
     if status == STATUS_DUE
       journal = Journal.new
@@ -42,10 +41,8 @@ binding.pry
       journal.parent_id = parent_journal.id
     end
 
-
     journal.user_id = user_id
     journal.medication_id = medication_id
-
     journal.timeperiod_id = timeperiod_id || nil
     journal.dosage = dosage
     journal.date_taken = date_taken

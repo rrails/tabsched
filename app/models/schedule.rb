@@ -53,7 +53,6 @@ class Schedule < ActiveRecord::Base
     reminder_time = Timeperiod.find(value[:group_id]).time_of_day
     end_date ||= start_date + 30.days
     s = IceCube::Schedule.new(start_date)
-    binding.pry
 
     case frequency
       when "IceCube::DailyRule"
@@ -66,7 +65,7 @@ class Schedule < ActiveRecord::Base
   end
 
   def send_email_message
-    EnquiryMailer.enquiry_email(self.medication_id,self.next_occurrence).deliver
+    EnquiryMailer.enquiry_email(self.medication_id,self.previous_occurrence,self.dosage).deliver
   end
 
 
@@ -80,9 +79,8 @@ class Schedule < ActiveRecord::Base
     # client.account.sms.messages.create(:from => '+17863759474',
     #                                    :to => user.mobile_phone,
     #                                    :body => body)
-binding.pry
 
-    Journal.journalise(user.id, medication.id, nil, nil, self.previous_occurrence,nil, nil, Journal::STATUS_NOTIFIED_SMS)
+    Journal.journalise(user.id, medication.id, nil, nil, self.previous_occurrence,nil, self.dosage, Journal::STATUS_NOTIFIED_SMS)
   end
 
 

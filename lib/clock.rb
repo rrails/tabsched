@@ -13,8 +13,8 @@ unless reminders.nil?
     next_schedule = reminder.set_nextoccurrence(reminder)
     binding.pry
     Journal.journalise(next_schedule.user_id, next_schedule.medication_id, nil, next_schedule.previous_occurrence, next_schedule.next_occurrence,next_schedule.dosage, Journal::STATUS_DUE)
-    # next_schedule.delay.send_email_message
-    next_schedule.delay.send_sms
+    next_schedule.delay.send_email_message
+    # next_schedule.delay.send_sms
   end
 end
 }
