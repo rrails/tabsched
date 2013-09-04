@@ -55,4 +55,10 @@ class Journal < ActiveRecord::Base
   def self.due
     where(:status => STATUS_DUE)
   end
+
+  def self.history
+    where(:status => [STATUS_DUE,STATUS_TAKEN, STATUS_SKIPPED]).order('date_taken')
+  end
+
 end
+

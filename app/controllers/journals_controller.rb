@@ -19,5 +19,8 @@ class JournalsController < ApplicationController
     end
     @journals = Journal.due.where({:user_id => current_user.id})
   end
+  def history
+    @journals = Journal.history.where({:user_id => current_user.id})
+  end
 
 end

@@ -1,0 +1,20 @@
+<h4>Result of Challenges taken</h4>
+  <table class="responsive">
+    <tr class='scorestable'>
+      <th>Medication</th>
+      <th>Status</th>
+      <th>Dosage</th>
+      <th>Last Taken</th>
+      <th>Next Dose</th>
+    </tr>
+    <% @journals.each do |journal| %>
+      <tr>
+        <td><%= journal.medication.medication_name %></td>
+        <td><%= journal.status %></td>
+        <td><%= journal.dosage %></td>
+        <td><%= journal.date_taken.strftime('%d-%m-%y %H:%M') if journal.date_taken %></td>
+        <td><%= journal.next_due.strftime('%d-%m-%y %H:%M') if journal.next_due %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

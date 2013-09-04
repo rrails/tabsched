@@ -36,7 +36,9 @@ table.width_hundred {
   height:20px;
   display: block;
 }
-
+table.width_hundred {
+  width: 100%;
+}
 /* Journal page*/
 .dose {
   position: relative;
@@ -62,9 +64,28 @@ table.width_hundred {
   padding: 1em;
   border-radius: 1em;
 }
+
+input{
+  max-width: 500px;
+
+}
+
+.topper{
+  margin-top: 15px;
+}
+/*.top-bar{
+  position: fixed top !important;
+}*/
 /*
 body{
 background:url(http://www.toxel.com/wp-content/uploads/2010/03/calendar13.jpg);
 background-size: 100%;
 padding-bottom: 200px;
 }*/
+
+.timeperiod > .columns {
+  border-radius: 0.5em;
+  background-color: #aaa;
+}
+
+

@@ -1,18 +1,30 @@
 <div class="row">
-  <div class="large-6 columns">
+  <div class="large-12 columns">
     <%= form_for @user do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <p class='profile-text'>
         <%= f.label :first_name %>
         <%= f.text_field :first_name %>
-        <%= f.label :email %>
-        <%= f.text_field :email, :class => 'email' %>
-        <%= f.check_box :email_notification, :id => 'email_notify'%>
-        <%= f.label :email_notification %>
-        <%= f.label :mobile_phone %>
-        <%= f.text_field :mobile_phone, :class => 'mobile_phone' %>
-        <%= f.check_box :mobile_phone_notification, :id => 'mobile_notify'%>
-        <%= f.label :mobile_phone_notification %>
+        <div class="row">
+          <div class="large-7 columns">
+            <%= f.label :email %>
+            <%= f.text_field :email, :class => 'email' %>
+          </div>
+          <div class="large-5 columns topper">
+            <%= f.check_box :email_notification, :id => 'email_notify'%>
+            <%= f.label :email_notification %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-7 columns">
+            <%= f.label :mobile_phone %>
+            <%= f.text_field :mobile_phone, :class => 'mobile_phone' %>
+          </div>
+          <div class="large-5 columns topper">
+            <%= f.check_box :mobile_phone_notification, :id => 'mobile_notify'%>
+            <%= f.label :mobile_phone_notification %>
+          </div>
+        </div>
       </p>
       <%= f.fields_for :timeperiods do |builder| %>
         <%= render 'timeperiods', :f => builder %>

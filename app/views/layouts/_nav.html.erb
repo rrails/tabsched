@@ -17,18 +17,21 @@
         <li class="divider"></li>
         <li><%= link_to "Medication", medications_path %></li>
         <li class="divider"></li>
-        <li><%= link_to "Journal", journals_path %></li>
+        <li><%= link_to "Does due", journals_path %></li>
         <li class="divider"></li>
-        <li><%= link_to "History", journals_path %></li>
+        <li><%= link_to "History", journals_history_path %></li>
       <% else %>
-        <li>Login</li>
+       <li><%= link_to "Register", register_path, :class => '' %></li>
+        <li><%= link_to "Sign In", login_path, :class => '' %></li>
+        <!-- <%#= link_to "About",about_path %> -->
+        <!-- <%#= link_to "Contact",contact_path %> -->
       <% end %>
     </ul>
 
     <ul class="right">
       <% if current_user.present? %>
         <li class="divider"></li>
-        <li><%= link_to(current_user.first_name, users_sign_in_path, :method => :delete) %></li>
+        <li><%= link_to(current_user.first_name, destroy_user_session_path, :method => :delete) %></li>
       <% end %>
     </ul>
   </section>

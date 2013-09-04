@@ -8,7 +8,6 @@
         <p class="last">Last Taken: <%= journal.date_taken.strftime('%d-%m-%y %H:%M') if journal.date_taken %></p>
           <!-- <%#= journal.date_due.strftime('%d-%m-%y %H:%M') if journal.date_due %> -->
         <p class="next">Next Due: <%= journal.next_due.strftime('%d-%m-%y %H:%M') if journal.next_due %></p>
-        <div class="controls">
       <div class="controls">
         <%= form_tag "/journals" do %>
           <input type="hidden" name="status" value="Taken">
@@ -21,7 +20,6 @@
           <input type="submit" value="Skipped">
         <% end %>
       </div>
-        </div>
       </div>
     <% end %>
   </div >
