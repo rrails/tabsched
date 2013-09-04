@@ -1,20 +1,29 @@
 <div class="row">
   <div class="large-7 columns">
     <% @journals.each do |journal| %>
-      <div class='eachmed'>
-        Medication: <%= journal.medication.medication_name %>
-        <div>
-          Status: <%= journal.status %>
-          Dosage: <%= journal.dosage %>
-          Last Taken: <%= journal.date_taken.strftime('%d-%m-%y %H:%M') if journal.date_taken %>
-          <%= journal.date_due.strftime('%d-%m-%y %H:%M') if journal.date_due %>
-          Next Due: <%= journal.next_due.strftime('%d-%m-%y %H:%M') if journal.next_due %>
-        </div>
-        <div>
-          <%= link_to('Taken',taken_journal_path(journal), :id => 'taken', :class => 'button radius tiny') %>
-          <%= link_to('Skipped',skip_journal_path(journal), :id => 'skipped', :class => 'button radius tiny') %>
+      <div class="dose">
+        <p class="medicine"> Medication: <%= journal.medication.medication_name %></p>
+        <p class="status">Status: <%= journal.status %></p>
+        <p class="dosage">Dosage: <%= journal.dosage %></p>
+        <p class="last">Last Taken: <%= journal.date_taken.strftime('%d-%m-%y %H:%M') if journal.date_taken %></p>
+          <!-- <%#= journal.date_due.strftime('%d-%m-%y %H:%M') if journal.date_due %> -->
+        <p class="next">Next Due: <%= journal.next_due.strftime('%d-%m-%y %H:%M') if journal.next_due %></p>
+        <div class="controls">
+      <div class="controls">
+        <%= form_tag "/journals" do %>
+          <input type="hidden" name="status" value="Taken">
+          <input type="hidden" name="id" value="<%= journal.id %>">
+          <input type="submit" value="Taken">
+        <% end %>
+        <%= form_tag "/journals" do %>
+          <input type="hidden" name="status" value="Skipped">
+          <input type="hidden" name="id" value="<%= journal.id %>">
+          <input type="submit" value="Skipped">
+        <% end %>
+      </div>
         </div>
       </div>
     <% end %>
   </div >
 </div>
+

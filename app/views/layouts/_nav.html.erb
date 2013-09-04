@@ -1,8 +1,7 @@
 <nav class="top-bar">
-  <div class="row">
   <ul class="title-area">
     <li class="name">
-      <h1><%= link_to 'TabSchedule', root_url %></a></h1>
+      <h1><a href="#"> Tabs </a></h1>
     </li>
     <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
   </ul>
@@ -12,6 +11,8 @@
     <ul class="left">
       <% if current_user.present? %>
         <li class="divider"></li>
+        <li class="active"><%= link_to('Home', current_user) %></li>
+        <li class="divider"></li>
         <li><%= link_to('Profile', edit_user_path(current_user), :class => 'button') %></li>
         <li class="divider"></li>
         <li><%= link_to "Medication", medications_path %></li>
@@ -19,14 +20,15 @@
         <li><%= link_to "Journal", journals_path %></li>
         <li class="divider"></li>
         <li><%= link_to "History", journals_path %></li>
-    </ul>
       <% else %>
         <li>Login</li>
       <% end %>
+    </ul>
+
     <ul class="right">
       <% if current_user.present? %>
         <li class="divider"></li>
-        <li><%= link_to('Log out', destroy_user_session_path, :class => 'button', :method => :delete ) %></li>
+        <li><%= link_to(current_user.first_name, users_sign_in_path, :method => :delete) %></li>
       <% end %>
     </ul>
   </section>

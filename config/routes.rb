@@ -4,21 +4,13 @@ Tabsched::Application.routes.draw do
   root :to => 'home#index'
 
   post '/users/sign_in' => "home#index"
-
+  get '/welcome' => "home#welcome"
+  get '/journals'  => "journals#bulk_edit"
+  post '/journals' => "journals#bulk_edit"
+  get '/journals' => "journals#history"
   resources :users
-  resources :journals do
-    collection do
-      get :bulk_edit
-      post :bulk_edit
-    end
-    member do
-      get :taken
-      get :skip
-    end
-  end
 
   resources :medications
-  # resources :schedules
   get "static_pages/contact"
   get "static_pages/about"
 
