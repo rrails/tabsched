@@ -52,15 +52,6 @@ table.width_hundred {
   width: 100%;
 }
 /* Journal page*/
-.dose {
-  position: relative;
-  width: 100%;
-  border: 1px solid black;
-  border-radius: 0.3em;
-  padding: 1em;
-  font-family: Arial;
-  margin: 0px 0px 20px 0px;
-}
 
 .medication {
   position: relative;
@@ -71,14 +62,22 @@ table.width_hundred {
   font-family: Arial;
   margin: 0px 0px 20px 0px;
 }
-
+/*.dose {
+  position: relative;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 0.3em;
+  padding: 1em;
+  font-family: Arial;
+  margin: 0px 0px 20px 0px;
+}*/
 .details {
    float: right;
 }
 
-.controls {
+/*.controls {
   width: 100%;
-}
+}*/
 
 .controls button {
   width: 39%;
@@ -120,5 +119,9 @@ body {
 
 .hide{
   display: none;
+}
+
+.btn {
+  width: 128.25px;
 }
 

@@ -20,8 +20,9 @@ class Medication < ActiveRecord::Base
   attr_accessible :medication_name, :stock_quantity, :expiry_date, :directions,:notes, :archive,:medication_type_id,
                   :user_id,:recurring_rules,:rosters_attributes
   belongs_to :users
-  has_many :rosters
-  has_many :journals
+  has_many :rosters, :dependent => :destroy
+  has_many :journals, :dependent => :destroy
+  has_many :schedules, :dependent => :destroy
 
   accepts_nested_attributes_for :rosters, :reject_if => lambda { |a| a[:frequency].blank? }, :allow_destroy => true
 

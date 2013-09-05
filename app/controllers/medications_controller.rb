@@ -37,6 +37,8 @@ class MedicationsController < ApplicationController
   def update
     @medication = Medication.find(params[:id])
     @medication.update_attributes(params[:medication])
+    binding.pry
+    # schedule = Schedule
     #    params[:medication][:rosters_attributes].each do |key,value|
 
     #   schedule_rule = @schedule.create_schedule(value)
@@ -51,13 +53,9 @@ class MedicationsController < ApplicationController
   end
 
   def destroy
-    # binding.pry
     medication = Medication.find(params[:id])
     medication.destroy
-
-    # render :json => [task]
+    redirect_to(medications_path)
   end
-
-
 
 end

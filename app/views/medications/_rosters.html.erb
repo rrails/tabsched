@@ -17,7 +17,7 @@
         <%= f.datepicker :ending_date, :class => "datepicker end_date", :label => false, :placeholder => "End Date", :required => true %>
       <% end %>
       <%= f.text_field :dosage, :required => true,:label => false, :placeholder => "Dosage"  %>
-      <%#= f.label :group_id %>
+      <%= f.label :group_id %>
       <%= f.select :group_id, current_user.timeperiods.collect{|e| [e.timeperiodname.time_period_name + e.time_of_day.to_s,e.id]}%>
       <!-- <%#= f.select :group_id, Timeperiod.all.collect{|e| [e.timeperiodname.time_period_name,e.id]}%> -->
       <!-- Need to do an ajax request to show the time. -->

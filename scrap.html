@@ -1,0 +1,99 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+var p=parent,v='test';
+p.name=v;
+  //global variables
+  var layerRef="null",layerStyleRef="null",styleSwitch="null",topStopPoint="null",layerRef="null",styleSwitch="null",currtop=-100;
+  var topStopPoint=-700,d=document.referrer;
+  var backupTopStopPoint=topStopPoint;
+  var currTop=200;
+  var pxSwitch="null";
+  var moving=1;
+  var k=0;
+  function init()
+  {
+    if (navigator.appName == "Netscape")
+    {
+      layerStyleRef="layer.";
+      layerRef="document.layers";
+      styleSwitch="";
+      pxSwitch="";
+    }
+    else
+    {
+      layerStyleRef="layer.style.";
+      layerRef="document.all";
+      styleSwitch=".style";
+      pxSwitch="px";
+    }
+    moveLayerUp('credits',k);
+  }
+  function pause(layerName)
+  {
+    moving*=-1;
+    if(moving<0)
+      topStopPoint=currTop+pxSwitch;
+    else
+    {
+      topStopPoint=backupTopStopPoint;
+      moveLayerUp(layerName,k);
+    }
+  }
+  function restart(layerName)
+  {
+    k++;
+    currTop=200;
+   topStopPoint=backupTopStopPoint;
+    if(moving<0)
+    {
+      moving*=-1;
+      moveLayerUp(layerName,k);
+    }
+  }
+  function moveLayerUp(layerName,n)
+  {
+    if (eval(layerRef+'["'+layerName+'"]'+styleSwitch+'.top != topStopPoint'))
+    {
+      currTop-=4;
+      eval(layerRef+'["'+layerName+'"]'+styleSwitch+'.top = currTop');
+      setTimeout('moveLayerUp("'+layerName+'",'+n+')',50);
+    }
+  }
+//-->
+</script>
+<style type="text/css">
+ #creditsControls {z-index: 1; position: absolute;  top: 150; left: 350px; width: 250px;}
+ H1 {text-align : center; color: #000080}
+ H2 {text-align : center; color: #ff0000}
+  #credits {z-index: -2; position: absolute;  top: 200; left: 30px; width: 300px;}
+  </style>
+</head>
+<body onLoad="init()">
+<h1 style="color: #000000;">Scrolling Credits</h1>
+<div id="creditsControls">
+<a href="javascript:pause('credits');">Pause/Unpause Credits</a><br>
+<a href="javascript:restart('credits');">Restart</a></b>
+<br><br><br></div>
+<div id="credits">
+<h1>Site Design by</h1>
+<h2>Alan Palmer</h2>
+<br><br>
+<h1>Written by</h1>
+<h2>Alan Palmer</h2>
+<br><br>
+<h1>HTML Editor</h1>
+<h2>HomeSite 4.01</h2>
+<br><br>
+<h1>Additional HTML Editing</h1>
+<h2>TextPad 3.2.5<br>MS FrontPage 98<br>Windows Notepad</h2>
+<br><br>
+<h1>Graphics Editor</h1>
+<h2>Paint Shop Pro  5.03</h2>
+<br><br>
+<h1>Additional Graphics</h1>
+<h2>Xara 3D 2.0<br>Xara Webster<br>Xara Webstyle</h2>
+<br><br><br><br>
+</div>
+<div id="footer+text" style="position: absolute; left: 10; top: 230"><layer name="footer+text" left=10 top=230><p>
+Use the links above to pause, stop pausing, or to restart the credits once they've finished running. Although this script
+works in Netscape 4.x, it works best when viewed using MSIE 4.x or 5.0.</p>
