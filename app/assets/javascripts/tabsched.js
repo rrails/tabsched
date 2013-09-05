@@ -35,39 +35,28 @@ function make_phone_required(){
   }
 }
 
-// function validate_start_end_dates(){
-//   var result = true;
-//   $(".start_date").each(function () {
-//     // if the next sibling has a value check it is later than the value of this.
-//     if ($(this).siblings('.end_date').datepicker('getDate') != null) {
-//       if ($(this).datepicker('getDate') > $(this).siblings('.end_date').datepicker('getDate')) {
-//         result = false;
-//         return result;
-//       }
-//     }
-//   });
-//   return result;
-// }
-
 function validate_start_end_dates(){
-  debugger;
   var result = true;
+  var $this = $(this);
+  var $form = $this.closest('form')
+  var $start_date = $form.find('.start_date')
 
-  $(".start_date").each(function () {
+  $form.find('.start_date').each(function () {
     // if the next sibling has a value check it is later than the value of this.
-    if ($this.siblings('.end_date').datepicker('getDate') != null) {
-      if ($this.datepicker('getDate') > $this.siblings('.end_date').datepicker('getDate')) {
-        $this.siblings('.end_date').find('.error').remove().end().append(errors.date);
-        $this.siblings('.end_date').find('.error').fadeIn();
+    if ($start_date.siblings('.end_date').datepicker('getDate') != null) {
+      if ($start_date.datepicker('getDate') > $start_date.siblings('.end_date').datepicker('getDate')) {
+        $start_date.siblings('.end_date').find('.error').remove().end().after(errors.date);
+        $start_date.siblings('.end_date').find('.error').fadeIn();
         result = false;
         return result;
       } else {
-        $this.siblings('.end_date').find('.error').fadeOut();
+        $start_date.siblings('.end_date').find('.error').fadeOut();
       }
     }
   });
   return result;
 }
+
 var med_taken_update = function(){
   $this = $(this).closest(".dose");
   var journal_id = $this.closest('.dose').find('.journal_id').val()
@@ -144,10 +133,7 @@ $(document).ready(function(){
     }
   }
 
-  $("#medication_form").click(function() {
-    var $this= $(this)
-    return validate_start_end_dates();
-  });
+  $("#medication_form").click(validate_start_end_dates);
 
   $("#email_notify").click(make_email_required);
   $("#mobile_notify").click(make_phone_required);
