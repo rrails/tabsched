@@ -35,21 +35,39 @@ function make_phone_required(){
   }
 }
 
+// function validate_start_end_dates(){
+//   var result = true;
+//   $(".start_date").each(function () {
+//     // if the next sibling has a value check it is later than the value of this.
+//     if ($(this).siblings('.end_date').datepicker('getDate') != null) {
+//       if ($(this).datepicker('getDate') > $(this).siblings('.end_date').datepicker('getDate')) {
+//         result = false;
+//         return result;
+//       }
+//     }
+//   });
+//   return result;
+// }
+
 function validate_start_end_dates(){
+  debugger;
   var result = true;
+
   $(".start_date").each(function () {
     // if the next sibling has a value check it is later than the value of this.
-    if ($(this).siblings('.end_date').datepicker('getDate') != null) {
-      if ($(this).datepicker('getDate') > $(this).siblings('.end_date').datepicker('getDate')) {
+    if ($this.siblings('.end_date').datepicker('getDate') != null) {
+      if ($this.datepicker('getDate') > $this.siblings('.end_date').datepicker('getDate')) {
+        $this.siblings('.end_date').find('.error').remove().end().append(errors.date);
+        $this.siblings('.end_date').find('.error').fadeIn();
         result = false;
         return result;
+      } else {
+        $this.siblings('.end_date').find('.error').fadeOut();
       }
     }
   });
   return result;
 }
-
-
 var med_taken_update = function(){
   $this = $(this).closest(".dose");
   var journal_id = $this.closest('.dose').find('.journal_id').val()
@@ -99,6 +117,9 @@ var med_skipped_update = function(){
     });
     return false;
 }
+errors = {
+  date: '<p class="error date">Start date must preceed end date</p>'
+  }
 
 
 $(document).ready(function(){
@@ -124,6 +145,7 @@ $(document).ready(function(){
   }
 
   $("#medication_form").click(function() {
+    var $this= $(this)
     return validate_start_end_dates();
   });
 

@@ -5,17 +5,17 @@
         <%= f.select_recurring :frequency %>
       </p>
       <%= f.label :starting_date %>
-      <% if f.object.ending_date %>
-        <%= f.datepicker :starting_date, :class => "datepicker starting_date" ,:required => true,:value => f.object.starting_date.strftime('%d-%b-%y')%>
+      <% if f.object.starting_date %>
+        <%= f.datepicker :starting_date, :class => "datepicker start_date" ,:required => true,:value => f.object.starting_date.strftime('%d-%b-%y')%>
       <% else %>
-        <%= f.datepicker :starting_date, :class => "datepicker end_date" %>
+        <%= f.datepicker :starting_date, :class => "datepicker start_date", :required => true %>
       <% end %>
 
       <%= f.label :ending_date %>
       <% if f.object.ending_date %>
         <%= f.datepicker :ending_date, :class => "datepicker end_date", :value => f.object.ending_date.strftime('%d-%b-%y') %>
       <% else %>
-        <%= f.datepicker :ending_date, :class => "datepicker end_date" %>
+        <%= f.datepicker :ending_date, :class => "datepicker end_date", :required => true %>
       <% end %>
       <%= f.label :dosage %>
       <%= f.text_field :dosage, :required => true  %>

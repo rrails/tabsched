@@ -11,7 +11,7 @@ class JournalsController < ApplicationController
         binding.pry
         medication = Medication.find(journal.medication_id)
         medication.update_stock(journal.dosage)
-        journal.update_attribute(:status, Journal::STATUS_TAKEN)
+        journal.update_attributes({:status => Journal::STATUS_TAKEN, :date_taken =>Time.now()})
       elsif (params[:journal][:status] == Journal::STATUS_SKIPPED)
         journal = Journal.find(params[:journal][:id])
         # date updated
@@ -28,7 +28,13 @@ class JournalsController < ApplicationController
   end
 
   def history
-    @journals = Journal.history.where({:user_id => current_user.id})
+    binding.pry
+
+    if params[:medication_name]
+      @journals = Journal.history.where({:user_id => current_user.id, :medication_id => params[:medication_name][:id]})
+    else
+      @journals = Journal.history.where({:user_id => current_user.id})
+    end
   end
 
 end

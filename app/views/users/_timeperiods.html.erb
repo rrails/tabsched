@@ -3,9 +3,9 @@
     <div class="large-6 columns">
       <%= f.label 'Time Period Name' %>
       <%= f.select :timeperiodname_id, Timeperiodname.all.collect{|e| [e.time_period_name,e.id]}%>
-        <%= f.label :time_of_day %>
+        <!-- <%#= f.label :time_of_day %> -->
         <% if f.object.time_of_day %>
-          <%= f.text_field :time_of_day, :class => 'timepicker', :value => f.object.time_of_day.strftime('%H:%M') %>
+          <%= f.text_field :time_of_day, :class => 'timepicker', :label => false, :placeholder => "Time of day",:value => f.object.time_of_day.strftime('%H:%M') %>
         <% else %>
           <%= f.text_field :time_of_day, :class => 'timepicker', :value => '9:00' %>
         <% end %>
@@ -14,4 +14,3 @@
     </div>
   </div>
 </div>
-

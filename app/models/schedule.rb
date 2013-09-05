@@ -38,7 +38,8 @@ class Schedule < ActiveRecord::Base
   end
 
   def send_email_message
-    EnquiryMailer.enquiry_email(self.medication_id,self.previous_occurrence,self.dosage).deliver
+    binding.pry
+    ReminderMailer.reminder_email(self.medication_id,self.previous_occurrence,self.dosage).deliver
   end
 
 
@@ -58,11 +59,11 @@ class Schedule < ActiveRecord::Base
 
 
   def set_nextoccurrence(id)
-    @next = ::Schedule.find(id.id)
-    @new_schedule = Schedule.from_hash(@next.schedule_rule)
-    @next.previous_occurrence = @next.next_occurrence
-    @next.next_occurrence = @new_schedule.next_occurrence()
-    @next.save
-    @next
+    # @next = ::Schedule.find(id.id)
+    # @new_schedule = Schedule.from_hash(@next.schedule_rule)
+    # @next.previous_occurrence = @next.next_occurrence
+    # @next.next_occurrence = @new_schedule.next_occurrence()
+    # @next.save
+    # @next
   end
 end
