@@ -17,7 +17,7 @@
 #
 
 class Roster < ActiveRecord::Base
-  attr_accessible :frequencytype_id,:frequency,:starting_date, :ending_date, :last_taken, :user_id,:medication_id,:group_id
+  attr_accessible :frequencytype_id,:frequency,:starting_date, :ending_date, :last_taken, :user_id,:medication_id,:group_id,:dosage
   belongs_to :user
   belongs_to :medication
 

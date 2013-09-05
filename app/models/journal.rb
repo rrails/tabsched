@@ -37,7 +37,6 @@ class Journal < ActiveRecord::Base
     else
       journal = Journal.new
       parent_journal = Journal.where({:user_id => user_id, :medication_id => medication_id, :date_due => date_due, :status =>STATUS_DUE }).first
-      binding.pry
       journal.parent_id = parent_journal.id
     end
 

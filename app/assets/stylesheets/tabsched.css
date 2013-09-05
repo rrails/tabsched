@@ -103,6 +103,9 @@ footer {
 
 body {
   padding-bottom: 65px;
+  /*background-image: url('/assets/red&white.png');*/
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .top_row_padding {
@@ -115,4 +118,7 @@ body {
   background-color: #aaa;
 }
 
+.hide{
+  display: none;
+}
 

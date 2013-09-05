@@ -9,14 +9,19 @@ Medicationtype.destroy_all
 Frequencytype.destroy_all
 Timeperiodname.destroy_all
 
-freq1 = Frequencytype.create(:frequency_type => 'Daily')
-freq2 = Frequencytype.create(:frequency_type => 'Weekly')
-freq3 = Frequencytype.create(:frequency_type => 'Monthly')
 
-medtype1 = Medicationtype.create(:medication_type => 'Tablet')
+medtype1 = Medicationtype.create(:medication_type => 'Tablets')
+medtype1 = Medicationtype.create(:medication_type => 'Capsules')
 medtype2 = Medicationtype.create(:medication_type => 'Liquid')
 medtype3 = Medicationtype.create(:medication_type => 'Injection')
 
 medtype1 = Timeperiodname.create(:time_period_name => 'Before Breakfast')
 medtype2 = Timeperiodname.create(:time_period_name => 'Breakfast')
 medtype3 = Timeperiodname.create(:time_period_name => 'After Breakfast')
+medtype1 = Timeperiodname.create(:time_period_name => 'Before Lunch')
+medtype2 = Timeperiodname.create(:time_period_name => 'Lunch')
+medtype3 = Timeperiodname.create(:time_period_name => 'After Lunch')
+medtype1 = Timeperiodname.create(:time_period_name => 'Before Dinner')
+medtype2 = Timeperiodname.create(:time_period_name => 'Dinner')
+medtype3 = Timeperiodname.create(:time_period_name => 'After Dinner')
+medtype3 = Timeperiodname.create(:time_period_name => 'Specific Time')

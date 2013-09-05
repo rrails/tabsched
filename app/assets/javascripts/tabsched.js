@@ -12,7 +12,6 @@ function add_fields(link, association, content) {
 }
 
 function make_email_required(){
-  debugger;
   var attr = $('.email').prop('required');
 
   if ($('#email_notify').is(':checked')) {
@@ -51,6 +50,57 @@ function validate_start_end_dates(){
 }
 
 
+var med_taken_update = function(){
+  $this = $(this).closest(".dose");
+  var journal_id = $this.closest('.dose').find('.journal_id').val()
+  var taken = 'Taken'
+  var token = $('input[name="authenticity_token"]').val();
+
+      $.ajax({
+      dataType: 'json',
+      type: 'POST',
+      url: '/journals',
+      data: {
+        '_method': 'put',
+        authenticity_token: token,
+          journal: {
+            status: taken,
+            id: journal_id,
+            }
+          }
+    }).done(function(){
+      $this.closest(".dose").addClass("hide").fadeOut();
+    }).error(function (message) {
+    });
+    return false;
+}
+
+var med_skipped_update = function(){
+  $this = $(this).closest(".dose");
+  var journal_id = $this.closest('.dose').find('.journal_id').val()
+  var taken = 'Skipped'
+  var token = $('input[name="authenticity_token"]').val();
+
+      $.ajax({
+      dataType: 'json',
+      type: 'POST',
+      url: '/journals',
+      data: {
+        '_method': 'put',
+        authenticity_token: token,
+          journal: {
+            status: taken,
+            id: journal_id,
+            }
+          }
+    }).done(function(){
+      $this.closest(".dose").addClass("hide").fadeOut();
+    }).error(function (message) {
+    });
+    return false;
+}
+
+
 $(document).ready(function(){
   $(".datepicker").datepicker({
     dateFormat: "dd-mm-yy"
@@ -79,6 +129,8 @@ $(document).ready(function(){
 
   $("#email_notify").click(make_email_required);
   $("#mobile_notify").click(make_phone_required);
+  $('.med_taken').click(med_taken_update);
+  $('.med_skipped').click(med_skipped_update);
 });
 
 

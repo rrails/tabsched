@@ -4,16 +4,16 @@
       <fieldset>
         <legend>Your Medications</legend>
         <%= render 'shared/error_messages', object: f.object %>
-        <%= f.label :medication_name %>
+        <%= f.label :medication_name , :required => true%>
         <%= f.text_field :medication_name %>
         <%= f.label :expiry_date %>
         <% if f.object.expiry_date %>
-        <%= f.text_field :expiry_date, :class => "datepicker", :value => f.object.expiry_date.strftime('%d-%m-%y')%>
+        <%= f.text_field :expiry_date, :class => "datepicker", :value => f.object.expiry_date.strftime('%d-%b-%y')%>
         <% else %>
           <%= f.text_field :expiry_date, :class => 'datepicker' %>
         <% end %>
         <%= f.label :stock_quantity %>
-        <%= f.text_field :stock_quantity%>
+        <%= f.text_field :stock_quantity,:required => true%>
         <%= f.label 'Medication Type' %>
         <%= f.select :medication_type_id, Medicationtype.all.collect{|e| [e.medication_type,e.id]}%>
       <%= f.fields_for :rosters do |builder| %>

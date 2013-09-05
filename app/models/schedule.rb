@@ -19,33 +19,6 @@ class Schedule < ActiveRecord::Base
   attr_accessible :user_id,:next_occurrence,:medication_id, :previous_occurrence
 # need to add validation for end date etc
 
-
-
-  # def create_schedule1(value,start_date,end_date,time,frequency1,days_of_week1)
-  #   frequency = JSON.parse(value[:frequency])['rule_type']
-  #   days_of_week = JSON.parse(value[:frequency])['validations']['day']
-  #   binding.pry
-  #   start_date = start_date.to_datetime
-  #   end_date = end_date.to_datetime
-  #   reminder_time = Timeperiod.find(time).time_of_day
-  #   end_date ||= start_date + 30.days
-  #   s = IceCube::Schedule.new(start_date)
-  #   binding.pry
-
-  #   case frequency
-  #     when "IceCube::DailyRule"
-  #      s.add_recurrence_rule IceCube::Rule.daily(1).hour_of_day(reminder_time.hour).minute_of_hour(reminder_time.min).second_of_minute(0).until(end_date)
-  #     when 'IceCube::WeeklyRule'
-  #       # days = days_of_week.map{ |d| d.to_sym  }
-  #       days = days_of_week
-  #       s.add_recurrence_rule IceCube::Rule.weekly(1).day(*days).hour_of_day(reminder_time.hour).minute_of_hour(reminder_time.min).second_of_minute(0).until(end_date)
-  #       # s.add_recurrence_rule IceCube::Rule.weekly(1).day(*days).until(end_date)
-  #   end
-  #   return s
-  # end
-
-
-
   def create_schedule(value)
     frequency = JSON.parse(value[:frequency])['rule_type']
     start_date = value[:starting_date].to_datetime

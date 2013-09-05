@@ -1,16 +1,19 @@
-show page
-<div class='row'>
-  <div class="large-6 columns">
-    <% @user %>
-      <p>Name: <%= @user.first_name %><br/></p>
-      <p>Mobile Number: <%= @user.mobile_phone %>
-        Notification <%= @user.notification_label%></p>
-      <p>Email: <%= @user.email %>
+<div class="row top_row_padding">
+  <div class='row'>
+  <div class="large-12 small-12 columns">
+    <fieldset>
+      <legend>Your Medications</legend>
+      <% @user %>
+        <p>Name: <%= @user.first_name %><br/></p>
+        <p>Mobile Number: <%= @user.mobile_phone %>
+         Notification <%= @user.notification_label%></p>
+        <p>Email: <%= @user.email %>
         Notification<%= @user.email_notification ? 'Yes' : 'No' %></p>
-
       <% @user.timeperiods.each do |t| %>
         <p><%= t.timeperiodname.time_period_name %>
         <%= t.time_of_day.strftime('%H:%M') %></p>
       <% end %>
+    </fieldset>
   </div>
+</div>
 </div>

@@ -13,8 +13,8 @@
         <td><%= journal.medication.medication_name %></td>
         <td><%= journal.status %></td>
         <td><%= journal.dosage %></td>
-        <td><%= journal.date_taken.strftime('%d-%m-%y') if journal.date_taken %></td>
-        <td><%= journal.next_due.strftime('%d-%m-%y') if journal.next_due %></td>
+        <td><%= journal.date_taken.strftime('%d-%b-%y') if journal.date_taken %></td>
+        <td><%= journal.next_due.strftime('%d-%b-%y') if journal.next_due %></td>
       </tr>
     <% end %>
   </table>

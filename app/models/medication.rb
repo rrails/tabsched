@@ -23,10 +23,9 @@ class Medication < ActiveRecord::Base
   has_many :rosters
   has_many :journals
 
-  accepts_nested_attributes_for :rosters, :reject_if => lambda { |a| a[:frequencytype_id].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :rosters, :reject_if => lambda { |a| a[:frequency].blank? }, :allow_destroy => true
 
   def update_stock(dosage)
-    binding.pry
     self.stock_quantity = self.stock_quantity - dosage
   end
 

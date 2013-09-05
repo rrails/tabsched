@@ -17,16 +17,15 @@ class MedicationsController < ApplicationController
     @medication.save
     @schedule = Schedule.new
 
-    # need to get the start date,end date,frquency and time from the roster_attrributes
     params[:medication][:rosters_attributes].each do |key,value|
 
-      schedule_rule = @schedule.create_schedule(value)
-      @schedule.schedule_rule = schedule_rule.to_hash
-      @schedule.next_occurrence = schedule_rule.next_occurrence()
-      @schedule.dosage = value[:dosage]
-      @schedule.medication_id = @medication.id
-      @schedule.user_id = current_user.id
-      @schedule.save
+    schedule_rule = @schedule.create_schedule(value)
+    @schedule.schedule_rule = schedule_rule.to_hash
+    @schedule.next_occurrence = schedule_rule.next_occurrence()
+    @schedule.dosage = value[:dosage]
+    @schedule.medication_id = @medication.id
+    @schedule.user_id = current_user.id
+    @schedule.save
     end
 
 
