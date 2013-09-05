@@ -37,18 +37,24 @@ class MedicationsController < ApplicationController
   def update
     @medication = Medication.find(params[:id])
     @medication.update_attributes(params[:medication])
-    binding.pry
-    # schedule = Schedule
-    #    params[:medication][:rosters_attributes].each do |key,value|
+    # Find the existing schedules and delete them as Ice Cube hash for recurrrence rule needs to be created
+    existing_schedules = Schedule.where(:medication_id => @medication.id)
+    existing_schedules.each do |oldschedule|
+      oldschedule.destroy
+    end
 
-    #   schedule_rule = @schedule.create_schedule(value)
-    #   @schedule.schedule_rule = schedule_rule.to_hash
-    #   @schedule.next_occurrence = schedule_rule.next_occurrence()
-    #   @schedule.dosage = value[:dosage]
-    #   @schedule.medication_id = @medication.id
-    #   @schedule.user_id = current_user.id
-    #   @schedule.save
-    # end
+    # Create the new schedule
+    @schedule = Schedule.new
+
+    params[:medication][:rosters_attributes].each do |key,value|
+      schedule_rule = @schedule.create_schedule(value)
+      @schedule.schedule_rule = schedule_rule.to_hash
+      @schedule.next_occurrence = schedule_rule.next_occurrence()
+      @schedule.dosage = value[:dosage]
+      @schedule.medication_id = @medication.id
+      @schedule.user_id = current_user.id
+      @schedule.save
+    end
     redirect_to(medications_path)
   end
 

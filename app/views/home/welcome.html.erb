@@ -17,29 +17,29 @@
         <!-- Image -->
         <div class="large-4 small-4 columns">
           <h4>Profile</h4><hr>
-          <img src="/assets/profile.png" class="welcome_images">
+          <%= link_to image_tag('/assets/profile.png'), edit_user_path(current_user) %>
           <br>
           <p  class="text_justified">
             <br>
-           You can maintain your profile. Add times when you regularly take tablets.
+            Use the RTM Reminder application to keep a complete list of all your medications. When you add your meds, you can also choose to get reminders via email or phone messages. Record your email address and phone numbers in the profile.
           </p>
         </div>
         <div class="large-4 small-4 columns">
           <h4>Dose Due</h4><hr>
-          <img src="/assets/dosedue.png" class="welcome_images">
+          <%= link_to image_tag('/assets/dosedue.png'), journals_path %>
           <br>
           <p class="text_justified">
             <br>
-           All the doses due that need to be updated once you have either taken them or skipped so the the history of the medication can be maintained.
+           Once you have recieved your reminders update the system to record whether you have taken or skipped the dose. This will provide you with a history of how you have been keeping up with taking the medication.
           </p>
         </div>
         <div class="large-4 small-4 columns">
-          <h4>History</h4><hr>
-          <img src="/assets/history.png" class="welcome_images">
+          <h4>Schedule</h4><hr>
+            <%= link_to image_tag('/assets/schedule.png'), medications_path %>
           <br>
            <p class="text_justified">
             <br>
-
+            Record all your medications and the schedule on when they are due to be taken. Scheduling facility is very flexible. A weekly dose can be set to any number of days specific to you.
           </p>
         </div>
         <!-- End Image -->

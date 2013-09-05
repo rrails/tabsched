@@ -28,10 +28,9 @@ class JournalsController < ApplicationController
   def history
     # need to sort by date
     if params[:medication_name]
-      binding.pry
       @journals = Journal.history.where({:user_id => current_user.id, :medication_id => params[:medication_name][:id]})
     else
-      @journals = Journal.history.where({:user_id => current_user.id})
+      @journals = Journal.history.where({:user_id => current_user.id}).order(:status).reverse
     end
   end
 

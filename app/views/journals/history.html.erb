@@ -24,10 +24,10 @@
         <td><%= journal.medication.medication_name %></td>
         <td><%= journal.status %></td>
         <td><%= journal.dosage %></td>
-        <td><%= journal.next_due.strftime('%d-%b-%y') if journal.next_due %></td>
-        <td><%= journal.next_due.strftime('%H:%M') if journal.next_due %></td>
-        <td><%= journal.date_taken.strftime('%d-%b-%y') if journal.date_taken %></td>
-        <td><%= journal.date_taken.strftime('%H:%M') if journal.date_taken %></td>
+        <td><%= journal.next_due.localtime.strftime('%d-%b-%y') if journal.next_due %></td>
+        <td><%= journal.next_due.localtime.strftime('%H:%M') if journal.next_due %></td>
+        <td><%= journal.date_taken.localtime.strftime('%d-%b-%y') if journal.date_taken %></td>
+        <td><%= journal.date_taken.localtime.strftime('%H:%M') if journal.date_taken %></td>
 
       </tr>
     <% end %>
