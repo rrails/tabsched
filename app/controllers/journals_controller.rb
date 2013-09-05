@@ -7,8 +7,6 @@ class JournalsController < ApplicationController
     if (params[:journal] != nil)
       if (params[:journal][:status] == Journal::STATUS_TAKEN)
         journal = Journal.find(params[:journal][:id])
-        # update date taken
-        binding.pry
         medication = Medication.find(journal.medication_id)
         medication.update_stock(journal.dosage)
         journal.update_attributes({:status => Journal::STATUS_TAKEN, :date_taken =>Time.now()})
@@ -19,7 +17,7 @@ class JournalsController < ApplicationController
       end
     end
 
-    @journals = Journal.due.where({:user_id => current_user.id})
+    @journals = Journal.due.where({:user_id => current_user.id}).order(:next_due)
 
     respond_to do |format|
       format.html {}
@@ -30,6 +28,7 @@ class JournalsController < ApplicationController
   def history
     # need to sort by date
     if params[:medication_name]
+      binding.pry
       @journals = Journal.history.where({:user_id => current_user.id, :medication_id => params[:medication_name][:id]})
     else
       @journals = Journal.history.where({:user_id => current_user.id})

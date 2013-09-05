@@ -1,16 +1,19 @@
 <div class='time row'>
   <div class='timeperiod'>
-    <div class="large-6 columns">
-      <%= f.label 'Time Period Name' %>
-      <%= f.select :timeperiodname_id, Timeperiodname.all.collect{|e| [e.time_period_name,e.id]}%>
-        <!-- <%#= f.label :time_of_day %> -->
+      <div class="large-5 small-5 columns">
+        <%#= f.label 'Time Period Name' %>
+        <%= f.select :timeperiodname_id, Timeperiodname.all.collect{|e| [e.time_period_name,e.id]}, :label => false %>
+      </div>
+      <div class="large-5 small-5 columns">
         <% if f.object.time_of_day %>
-          <%= f.text_field :time_of_day, :class => 'timepicker', :label => false, :placeholder => "Time of day",:value => f.object.time_of_day.strftime('%H:%M') %>
+          <%= f.text_field :time_of_day, :class => 'timepicker', :label => false, :placeholder => "Time of day",:value => f.object.time_of_day.strftime('%H:%M'), :label => false %>
         <% else %>
           <%= f.text_field :time_of_day, :class => 'timepicker', :value => '9:00' %>
         <% end %>
-      <%= f.hidden_field :_destroy %>
-      <%= f.button 'Delete timeperiod', :id => 'del_timeperiod', :class => 'btn radius  tiny alert' %>
+      </div>
+      <div class="large-2 small-2 columns">
+        <%= f.hidden_field :_destroy %>
+        <%= f.button 'Delete', :id => 'del_timeperiod', :class => 'button small alert' %>
+      </div>
     </div>
   </div>
-</div>

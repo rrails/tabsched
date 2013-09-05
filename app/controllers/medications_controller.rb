@@ -18,16 +18,14 @@ class MedicationsController < ApplicationController
     @schedule = Schedule.new
 
     params[:medication][:rosters_attributes].each do |key,value|
-
-    schedule_rule = @schedule.create_schedule(value)
-    @schedule.schedule_rule = schedule_rule.to_hash
-    @schedule.next_occurrence = schedule_rule.next_occurrence()
-    @schedule.dosage = value[:dosage]
-    @schedule.medication_id = @medication.id
-    @schedule.user_id = current_user.id
-    @schedule.save
+      schedule_rule = @schedule.create_schedule(value)
+      @schedule.schedule_rule = schedule_rule.to_hash
+      @schedule.next_occurrence = schedule_rule.next_occurrence()
+      @schedule.dosage = value[:dosage]
+      @schedule.medication_id = @medication.id
+      @schedule.user_id = current_user.id
+      @schedule.save
     end
-
 
     redirect_to(medications_path)
   end
@@ -39,7 +37,27 @@ class MedicationsController < ApplicationController
   def update
     @medication = Medication.find(params[:id])
     @medication.update_attributes(params[:medication])
+    #    params[:medication][:rosters_attributes].each do |key,value|
+
+    #   schedule_rule = @schedule.create_schedule(value)
+    #   @schedule.schedule_rule = schedule_rule.to_hash
+    #   @schedule.next_occurrence = schedule_rule.next_occurrence()
+    #   @schedule.dosage = value[:dosage]
+    #   @schedule.medication_id = @medication.id
+    #   @schedule.user_id = current_user.id
+    #   @schedule.save
+    # end
     redirect_to(medications_path)
   end
+
+  def destroy
+    # binding.pry
+    medication = Medication.find(params[:id])
+    medication.destroy
+
+    # render :json => [task]
+  end
+
+
 
 end

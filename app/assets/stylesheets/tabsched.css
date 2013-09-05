@@ -54,7 +54,7 @@ table.width_hundred {
 /* Journal page*/
 .dose {
   position: relative;
-  width: 350px;
+  width: 100%;
   border: 1px solid black;
   border-radius: 0.3em;
   padding: 1em;
@@ -91,7 +91,7 @@ input{
   width: 100%;
 }
 
-footer {
+/*footer {
   position: fixed;
   width: 100%;
   background: white;
@@ -99,7 +99,7 @@ footer {
   z-index: 3;
   bottom: 0;
   left: 0;
-}
+}*/
 
 body {
   padding-bottom: 65px;
@@ -113,10 +113,10 @@ body {
 }
 
 
-.timeperiod > .columns {
+/*.timeperiod > .columns {
   border-radius: 0.5em;
   background-color: #aaa;
-}
+}*/
 
 .hide{
   display: none;

@@ -1,6 +1,6 @@
 <div class="row top_row_padding">
   <div class="large-12 small-12 columns">
-    <%= form_for @user do |f| %>
+    <%= form_for @user, :html => { :class => "custom" } do |f| %>
       <fieldset>
         <legend>Your Profile</legend>
         <%= render 'shared/error_messages', object: f.object %>
@@ -17,20 +17,30 @@
               <%= f.text_field :mobile_phone, :class => 'mobile_phone', :label => false, :placeholder => "Mobile Phone Number: " %>
             </div>
             <br>
+            <br>
+            <br>
             <div class="large-6 small-6 columns">
-              <%= f.label :email_notification%>
-              <%= f.check_box :email_notification %>
+              <br>
+              <%#= f.label :email_notification%>
+              <label for="email"><%= f.check_box :email_notification, :id => "email", :style => "display: none;" %><span class="custom checkbox"></span> Check for Email Notification</label>
             </div>
             <div class="large-6 small-6 columns">
-              <%= f.label :mobile_phone_notification %>
-              <%= f.check_box :mobile_phone_notification, :id => 'mobile_notify'%>
+              <br>
+              <%#= f.label :mobile_phone_notification %>
+              <label for="mobile_notify"><%= f.check_box :mobile_phone_notification, :id => 'mobile_notify', :style => "display: none;" %><span class="custom checkbox"></span> Check for Mobile Phone Notifications</label>
             </div>
           </div>
+          <br><hr>
+          <div class="large-6 small-6">
+            <h4>Time of the Day?</h4>
+            <br>
+          </div>
+
         <%= f.fields_for :timeperiods do |builder| %>
           <%= render 'timeperiods', :f => builder %>
         <% end %>
         <div id="addtimeperiodlink">
-          <%=  link_to_add_fields image_tag("plus.png"),f, :timeperiods,:class => 'button small round' %>
+          <%=  link_to_add_fields "Add another time period?", f, :timeperiods,:class => 'button small' %>
         </div>
         <p><%= f.submit %></p>
       </fieldset>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130903022909) do
+ActiveRecord::Schema.define(:version => 20130905060131) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0, :null => false
@@ -28,12 +28,6 @@ ActiveRecord::Schema.define(:version => 20130903022909) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
-
-  create_table "frequencytypes", :force => true do |t|
-    t.string   "frequency_type"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
 
   create_table "journals", :force => true do |t|
     t.integer  "user_id"
@@ -69,15 +63,14 @@ ActiveRecord::Schema.define(:version => 20130903022909) do
   end
 
   create_table "rosters", :force => true do |t|
-    t.integer  "frequencytype_id"
     t.datetime "starting_date"
     t.datetime "ending_date"
     t.datetime "last_taken"
     t.integer  "user_id"
     t.integer  "medication_id"
     t.integer  "group_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "frequency"
     t.integer  "dosage"
   end

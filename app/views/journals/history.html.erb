@@ -3,9 +3,9 @@
   <%= form_tag(journals_history_path, method: "get") do %>
   <%= options_from_collection_for_select(Medication.all, :id, :medication_name) %>
   <%= collection_select(:medication_name, :id, current_user.medications.all, :id, :medication_name) %>
-  <%= text_field_tag :start_date, nil,  :placeholder => 'Start Date ',:class => "datepicker end_date", :id =>"search_field" %>
-  <%= text_field_tag :end_date, nil,  :placeholder => 'End Date ', :class => "datepicker end_date",:id =>"search_field" %>
-  <%=  button_tag 'Search', :id => 'search_submit', :class => 'button radius' %>
+  <%= text_field_tag :start_date, nil,  :placeholder => 'Date Taken',:class => "datepicker start_date", :id =>"start_field" %>
+  <%= text_field_tag :end_date, nil,  :placeholder => 'Next Date ', :class => "datepicker end_date",:id =>"end_field" %>
+  <%=  button_tag 'Search', :id => 'search_submit', :class => 'button small radius' %>
 
  <% end %>
   <table class="responsive width_hundred">
@@ -13,16 +13,22 @@
       <th>Medication</th>
       <th>Status</th>
       <th>Dosage</th>
-      <th>Last Taken</th>
-      <th>Next Dose</th>
+      <th>Next Dose Date</th>
+      <th>Next Dose Time</th>
+      <th>Last Taken Dete</th>
+      <th>Last Taken Time</th>
+
     </tr>
     <% @journals.each do |journal| %>
       <tr>
         <td><%= journal.medication.medication_name %></td>
         <td><%= journal.status %></td>
         <td><%= journal.dosage %></td>
-        <td><%= journal.date_taken.strftime('%d-%b-%y') if journal.date_taken %></td>
         <td><%= journal.next_due.strftime('%d-%b-%y') if journal.next_due %></td>
+        <td><%= journal.next_due.strftime('%H:%M') if journal.next_due %></td>
+        <td><%= journal.date_taken.strftime('%d-%b-%y') if journal.date_taken %></td>
+        <td><%= journal.date_taken.strftime('%H:%M') if journal.date_taken %></td>
+
       </tr>
     <% end %>
   </table>

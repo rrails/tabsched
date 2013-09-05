@@ -38,7 +38,6 @@ class Schedule < ActiveRecord::Base
   end
 
   def send_email_message
-    binding.pry
     ReminderMailer.reminder_email(self.medication_id,self.previous_occurrence,self.dosage).deliver
   end
 

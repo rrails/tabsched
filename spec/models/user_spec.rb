@@ -30,7 +30,7 @@ describe User do
       @user = FactoryGirl.create(:user)
     end
     it "has a password" do
-      user.password.should include(first)
+      @user.password.should eq('first')
     end
   end
 end

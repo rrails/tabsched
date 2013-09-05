@@ -9,6 +9,8 @@
             <p>Expiry Date:<%= med.expiry_date.strftime('%d-%b-%y') if med.expiry_date %></p>
             <p>Directions: <%= med.directions %></p>
             <%= link_to('Edit Medication', edit_medication_path(med), :id => 'update_medication', :class => 'button radius tiny ')%>
+            <%= link_to('Delete Medication', :method => :delete, :id => 'delete_medication', :class => 'button radius tiny')%>
+
           </div>
     <% end %>
   </fieldset>
