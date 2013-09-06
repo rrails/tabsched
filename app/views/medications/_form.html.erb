@@ -11,7 +11,6 @@
           <%= f.text_field :expiry_date, :class => 'datepicker', :label => false, :placeholder => "Expiry Date" %>
         <% end %>
         <%= f.text_field :stock_quantity,:required => true, :label => false, :placeholder => "Stock Quantity"%>
-        <%#= f.label 'Medication Type' %>
         <%= f.select :medication_type_id, Medicationtype.all.collect{|e| [e.medication_type,e.id]}%>
       <%= f.fields_for :rosters do |builder| %>
         <%= render 'rosters', :f => builder %>

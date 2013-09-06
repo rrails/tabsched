@@ -5,10 +5,12 @@ function remove_fields(link) {
 
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
-  var regexp = new RegExp("new_" + association, "g")
+  var regexp = new RegExp("new_" + association, "g");
   $(link).parent().before(content.replace(regexp, new_id));
+  // NEVER EVER LOOK AT THE NEXT LINE OF CODE
+  $(link).parent().parent().find('.timeperiod select').each(Foundation.libs.forms.append_custom_select);
   $('.datepicker').datepicker('option', 'dateFormat', 'dd-mm-yy');
-  $(".timepicker").timepicker({"timeformat": "h:i: A"})
+  $(".timepicker").timepicker({"timeformat": "h:i: A"});
 }
 
 function make_email_required(){
@@ -76,7 +78,7 @@ var med_taken_update = function(){
             }
           }
     }).done(function(){
-      $this.closest(".dose").addClass("hide").fadeOut();
+      $this.closest(".medication").addClass("hide").fadeOut();
     }).error(function (message) {
     });
     return false;
@@ -101,7 +103,7 @@ var med_skipped_update = function(){
             }
           }
     }).done(function(){
-      $this.closest(".dose").addClass("hide").fadeOut();
+      $this.closest(".medication").addClass("hide").fadeOut();
     }).error(function (message) {
     });
     return false;

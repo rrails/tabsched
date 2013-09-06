@@ -6,17 +6,17 @@
         <%= f.select_recurring :frequency %>
       </p>
       <% if f.object.starting_date %>
-        <%= f.datepicker :starting_date, :class => "datepicker start_date" ,:label => false, :placeholder => "Start Date",:required => true,:value => f.object.starting_date.strftime('%d-%b-%y')%>
+        <%= f.datepicker :starting_date, :class => "datepicker start_date" ,:label => false, :placeholder => "Start Date",:value => f.object.starting_date.strftime('%d-%b-%y')%>
       <% else %>
-        <%= f.datepicker :starting_date, :class => "datepicker start_date",:label => false, :placeholder => "Start Date", :required => true %>
+        <%= f.datepicker :starting_date, :class => "datepicker start_date",:label => false, :placeholder => "Start Date" %>
       <% end %>
 
       <% if f.object.ending_date %>
         <%= f.datepicker :ending_date, :class => "datepicker end_date", :label => false, :placeholder => "End Date",:value => f.object.ending_date.strftime('%d-%b-%y') %>
       <% else %>
-        <%= f.datepicker :ending_date, :class => "datepicker end_date", :label => false, :placeholder => "End Date", :required => true %>
+        <%= f.datepicker :ending_date, :class => "datepicker end_date", :label => false, :placeholder => "End Date" %>
       <% end %>
-      <%= f.text_field :dosage, :required => true,:label => false, :placeholder => "Dosage"  %>
+      <%= f.text_field :dosage, :label => false, :placeholder => "Dosage"  %>
       <%= f.label :group_id %>
       <%= f.select :group_id, current_user.timeperiods.collect{|e| [e.timeperiodname.time_period_name + e.time_of_day.to_s,e.id]}%>
       <!-- <%#= f.select :group_id, Timeperiod.all.collect{|e| [e.timeperiodname.time_period_name,e.id]}%> -->

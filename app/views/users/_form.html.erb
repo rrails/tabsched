@@ -10,7 +10,7 @@
             </div>
             <br>
             <div class="large-12 small-12 columns">
-              <%= f.text_field :email, :class => 'email', :label => false, :placeholder => "Email: " %>
+              <%= f.text_field :email, :class => 'email', :label => false, :placeholder => "Email: ",:required => true %>
             </div>
             <br>
             <div class="large-12 small-12 columns">
@@ -38,7 +38,7 @@
           <%= render 'timeperiods', :f => builder %>
         <% end %>
         <div id="addtimeperiodlink">
-          <%=  link_to_add_fields "Add another time period?", f, :timeperiods,:class => 'button small' %>
+          <%=  link_to_add_fields "Add time period?", f, :timeperiods,:class => 'button small' %>
         </div>
         <p><%= f.submit %></p>
       </fieldset>

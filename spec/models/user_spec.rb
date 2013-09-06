@@ -33,4 +33,10 @@ describe User do
       @user.password.should eq('first')
     end
   end
+
+  describe User do
+    it { should have_many(:journals) }
+    it { should have_many(:timeperiods) }
+    it { should have_many(:medications) }
+  end
 end

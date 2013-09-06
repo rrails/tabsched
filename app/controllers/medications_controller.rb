@@ -16,15 +16,19 @@ class MedicationsController < ApplicationController
     @medication.user_id = current_user.id
     @medication.save
     @schedule = Schedule.new
-
-    params[:medication][:rosters_attributes].each do |key,value|
-      schedule_rule = @schedule.create_schedule(value)
-      @schedule.schedule_rule = schedule_rule.to_hash
-      @schedule.next_occurrence = schedule_rule.next_occurrence()
-      @schedule.dosage = value[:dosage]
-      @schedule.medication_id = @medication.id
-      @schedule.user_id = current_user.id
-      @schedule.save
+    # Create the schedule if the frequency attributes have been entered.
+    if params[:medication][:rosters_attributes] != nil
+      if params[:medication][:rosters_attributes]["0"]['frequency'] != 'null'
+        params[:medication][:rosters_attributes].each do |key,value|
+          schedule_rule = @schedule.create_schedule(value)
+          @schedule.schedule_rule = schedule_rule.to_hash
+          @schedule.next_occurrence = schedule_rule.next_occurrence()
+          @schedule.dosage = value[:dosage]
+          @schedule.medication_id = @medication.id
+          @schedule.user_id = current_user.id
+          @schedule.save
+        end
+      end
     end
 
     redirect_to(medications_path)
@@ -37,6 +41,7 @@ class MedicationsController < ApplicationController
   def update
     @medication = Medication.find(params[:id])
     @medication.update_attributes(params[:medication])
+
     # Find the existing schedules and delete them as Ice Cube hash for recurrrence rule needs to be created
     existing_schedules = Schedule.where(:medication_id => @medication.id)
     existing_schedules.each do |oldschedule|
@@ -46,14 +51,19 @@ class MedicationsController < ApplicationController
     # Create the new schedule
     @schedule = Schedule.new
 
-    params[:medication][:rosters_attributes].each do |key,value|
-      schedule_rule = @schedule.create_schedule(value)
-      @schedule.schedule_rule = schedule_rule.to_hash
-      @schedule.next_occurrence = schedule_rule.next_occurrence()
-      @schedule.dosage = value[:dosage]
-      @schedule.medication_id = @medication.id
-      @schedule.user_id = current_user.id
-      @schedule.save
+    # Create the schedule if the frequency attributes have been entered.
+    if params[:medication][:rosters_attributes] != nil
+      if params[:medication][:rosters_attributes]["0"]['frequency'] != 'null'
+        params[:medication][:rosters_attributes].each do |key,value|
+          schedule_rule = @schedule.create_schedule(value)
+          @schedule.schedule_rule = schedule_rule.to_hash
+          @schedule.next_occurrence = schedule_rule.next_occurrence()
+          @schedule.dosage = value[:dosage]
+          @schedule.medication_id = @medication.id
+          @schedule.user_id = current_user.id
+          @schedule.save
+        end
+      end
     end
     redirect_to(medications_path)
   end

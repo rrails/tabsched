@@ -51,7 +51,8 @@ class Schedule < ActiveRecord::Base
   def send_sms
 
     medication = Medication.find(self.medication_id)
-    body = medication.medication_name
+
+    body = 'Your medication ' + medication.medication_name + ' dosage ' + self.dosage.to_s + ' is due.'
     user = User.where(:id => medication.user_id).first
 
     client = Twilio::REST::Client.new(ENV['TW_SID'], ENV['TW_TOK'])
