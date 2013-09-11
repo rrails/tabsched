@@ -14,6 +14,5 @@ describe Medication do
     it { should have_many(:rosters) }
     it { should have_many(:journals) }
     it { should have_many(:schedules) }
-    it { should belong_to(:users) }
   end
 end

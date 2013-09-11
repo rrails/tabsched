@@ -1,9 +1,6 @@
 class JournalsController < ApplicationController
-  def index
-    @journals = Journal.due.where({:user_id => current_user.id})
-  end
-
   def bulk_edit
+    # update the journal to reflect user input for dosage taken or skipped.
     if (params[:journal] != nil)
       if (params[:journal][:status] == Journal::STATUS_TAKEN)
         journal = Journal.find(params[:journal][:id])
@@ -12,7 +9,6 @@ class JournalsController < ApplicationController
         journal.update_attributes({:status => Journal::STATUS_TAKEN, :date_taken =>Time.now()})
       elsif (params[:journal][:status] == Journal::STATUS_SKIPPED)
         journal = Journal.find(params[:journal][:id])
-        # date updated
         journal.update_attribute(:status, Journal::STATUS_SKIPPED)
       end
     end
