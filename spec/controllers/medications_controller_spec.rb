@@ -14,6 +14,13 @@ describe MedicationsController do
       expect(response).to render_template("index")
     end
   end
+  describe 'new medication' do
+    before do
+      @medication = Medication.new(:medication_name => 'Panadol', :expiry_date => "12/3/2013", :stock_quantity=> 10)
+    end
+    it "should create a new medication" do
+    end
+  end
 
   describe 'Create medication' do
     before do

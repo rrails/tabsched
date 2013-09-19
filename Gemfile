@@ -28,6 +28,7 @@ group :development, :test do
   gem 'faker'
 
   gem 'rspec-rails'
+  gem 'guard-rspec'
   gem 'shoulda-matchers'
   gem 'simplecov'
   gem 'capybara'
